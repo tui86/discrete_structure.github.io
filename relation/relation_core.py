@@ -6,9 +6,7 @@ import re
 import sys
 import os
 import ultis.basic_math as bm
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import networkx as nx
 from collections import defaultdict, deque
 
@@ -116,62 +114,62 @@ class Relationship:
             nodes.add(b)
         return nodes
     
-    def _draw_hasse_diagram_int(self):
-        G = nx.DiGraph()
+    # def _draw_hasse_diagram_int(self):
+    #     G = nx.DiGraph()
 
-        # Lấy danh sách node
-        direct_subset_relations = self.create_hasse_diagram()
-        nodes = set()
-        for u, v in direct_subset_relations:
-            nodes.add(u)
-            nodes.add(v)
+    #     # Lấy danh sách node
+    #     direct_subset_relations = self.create_hasse_diagram()
+    #     nodes = set()
+    #     for u, v in direct_subset_relations:
+    #         nodes.add(u)
+    #         nodes.add(v)
 
-        for node in nodes:
-            G.add_node(node)
+    #     for node in nodes:
+    #         G.add_node(node)
 
-        # Thêm cạnh
-        for u, v in direct_subset_relations:
-            G.add_edge(u, v)
+    #     # Thêm cạnh
+    #     for u, v in direct_subset_relations:
+    #         G.add_edge(u, v)
 
-        # Tính level của từng node
-        level = {node: 0 for node in nodes}  # mặc định level = 0
+    #     # Tính level của từng node
+    #     level = {node: 0 for node in nodes}  # mặc định level = 0
 
-        changed = True
-        while changed:
-            changed = False
-            for u, v in direct_subset_relations:
-                # Nếu u < v → level[v] phải ≥ level[u] + 1
-                if u < v:
-                    if level[v] < level[u] + 1:
-                        level[v] = level[u] + 1
-                        changed = True
-                elif u > v:
-                    if level[u] < level[v] + 1:
-                        level[u] = level[v] + 1
-                        changed = True
+    #     changed = True
+    #     while changed:
+    #         changed = False
+    #         for u, v in direct_subset_relations:
+    #             # Nếu u < v → level[v] phải ≥ level[u] + 1
+    #             if u < v:
+    #                 if level[v] < level[u] + 1:
+    #                     level[v] = level[u] + 1
+    #                     changed = True
+    #             elif u > v:
+    #                 if level[u] < level[v] + 1:
+    #                     level[u] = level[v] + 1
+    #                     changed = True
 
-        # Gom node theo level
-        levels = defaultdict(list)
-        for node, lv in level.items():
-            levels[lv].append(node)
+    #     # Gom node theo level
+    #     levels = defaultdict(list)
+    #     for node, lv in level.items():
+    #         levels[lv].append(node)
 
-        # Tọa độ vẽ
-        pos = {}
-        for lv, nodes_at_level in levels.items():
-            num = len(nodes_at_level)
-            for i, node in enumerate(nodes_at_level):
-                pos[node] = (i - (num - 1) / 2, -lv)
+    #     # Tọa độ vẽ
+    #     pos = {}
+    #     for lv, nodes_at_level in levels.items():
+    #         num = len(nodes_at_level)
+    #         for i, node in enumerate(nodes_at_level):
+    #             pos[node] = (i - (num - 1) / 2, -lv)
 
-        # Vẽ
-        plt.figure(figsize=(10, 8))
-        nx.draw(
-            G, pos, with_labels=True,
-            node_size=2000, node_color='lightblue',
-            font_size=10, arrowstyle='->',
-            arrowsize=20, edge_color='gray'
-        )
-        plt.title("Hasse Diagram")
-        plt.show()
+    #     # Vẽ
+    #     plt.figure(figsize=(10, 8))
+    #     nx.draw(
+    #         G, pos, with_labels=True,
+    #         node_size=2000, node_color='lightblue',
+    #         font_size=10, arrowstyle='->',
+    #         arrowsize=20, edge_color='gray'
+    #     )
+    #     plt.title("Hasse Diagram")
+    #     plt.show()
 
     def _sup(self, subset):
         '''Tìm chặn trên của tập con'''

@@ -6,9 +6,7 @@ import re
 import sys
 import os
 import ultis.basic_math as bm
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import networkx as nx
 from collections import defaultdict, deque
 

@@ -6,9 +6,7 @@ import re
 import sys
 import os
 import ultis.basic_math as bm
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import networkx as nx
 from collections import defaultdict, deque
 
@@ -341,34 +339,34 @@ class Boolean_algebra:
         return result
     
 
-    def Draw_K_map(self):
-        fig, ax = plt.subplots(figsize=(5, 5))
+    # def Draw_K_map(self):
+    #     fig, ax = plt.subplots(figsize=(5, 5))
 
-        data = np.array(self.Karnaugh_chart(), dtype=int)
-        ax.imshow(data, cmap='Greens')
+    #     data = np.array(self.Karnaugh_chart(), dtype=int)
+    #     ax.imshow(data, cmap='Greens')
 
-        # Kẻ lưới
-        ax.set_xticks(np.arange(-.5, 4, 1), minor=True)
-        ax.set_yticks(np.arange(-.5, 4, 1), minor=True)
-        ax.grid(which='minor', color='black', linewidth=2)
-        ax.tick_params(which='both', bottom=False, left=False)
+    #     # Kẻ lưới
+    #     ax.set_xticks(np.arange(-.5, 4, 1), minor=True)
+    #     ax.set_yticks(np.arange(-.5, 4, 1), minor=True)
+    #     ax.grid(which='minor', color='black', linewidth=2)
+    #     ax.tick_params(which='both', bottom=False, left=False)
 
-        # Nhãn cột (x, y)
-        ax.set_xticks([0, 1, 2, 3])
-        ax.set_xticklabels(
-            [r'$\bar{y}$', r'$y$', r'$y$', r'$\bar{y}$'],
-            fontsize=12
-        )
+    #     # Nhãn cột (x, y)
+    #     ax.set_xticks([0, 1, 2, 3])
+    #     ax.set_xticklabels(
+    #         [r'$\bar{y}$', r'$y$', r'$y$', r'$\bar{y}$'],
+    #         fontsize=12
+    #     )
 
-        # Nhãn hàng (z, t)
-        ax.set_yticks([0, 1, 2, 3])
-        ax.set_yticklabels(
-            [r'$z\bar{t}$', r'$zt$', r'$\bar{z}t$', r'$\bar{z}\bar{t}$'],
-            fontsize=12
-        )
+    #     # Nhãn hàng (z, t)
+    #     ax.set_yticks([0, 1, 2, 3])
+    #     ax.set_yticklabels(
+    #         [r'$z\bar{t}$', r'$zt$', r'$\bar{z}t$', r'$\bar{z}\bar{t}$'],
+    #         fontsize=12
+    #     )
 
-        # Nhãn biến phía trên
-        for i, label in enumerate([r'$x$', r'$x$', r'$\bar{x}$', r'$\bar{x}$']):
-            ax.text(i, -0.9, label, ha='center', va='center', fontsize=14)
+    #     # Nhãn biến phía trên
+    #     for i, label in enumerate([r'$x$', r'$x$', r'$\bar{x}$', r'$\bar{x}$']):
+    #         ax.text(i, -0.9, label, ha='center', va='center', fontsize=14)
 
-        plt.show()
+    #     plt.show()
