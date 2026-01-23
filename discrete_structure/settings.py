@@ -127,9 +127,11 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+# If you run locally, serve static files from 'static' directory
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
