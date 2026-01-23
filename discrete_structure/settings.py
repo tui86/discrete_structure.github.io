@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'counting',
     'logic',
     'relation',
-    "logic.apps.LogicConfig",
 ]
 
 MIDDLEWARE = [
