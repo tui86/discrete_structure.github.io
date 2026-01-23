@@ -7,7 +7,7 @@ import sys
 import os
 import ultis.basic_math as bm
 #import matplotlib.pyplot as plt
-import networkx as nx
+#import networkx as nx
 from collections import defaultdict, deque
 
 class Relationship:
