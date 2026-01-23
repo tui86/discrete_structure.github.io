@@ -8,11 +8,14 @@ import json
 def count_relation_data(name):
     def decorator(func):
         @wraps(func)
-        def wrapper(request):
-            counter, _ = RelationModel.objects.get_or_create(name=name)
-            counter.count += 1
-            counter.save()
-            return func(request)
+        def wrapper(request, *args, **kwargs):
+            try:
+                counter, _ = RelationModel.objects.get_or_create(name=name)
+                counter.count += 1
+                counter.save()
+            except Exception:
+                pass  # không cho thống kê làm chết web
+            return func(request, *args, **kwargs)
         return wrapper
     return decorator
 

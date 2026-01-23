@@ -8,11 +8,14 @@ import ast
 def count_data(name):
     def decorator(func):
         @wraps(func)
-        def wrapper(request):
-            counter, _ = CountingModel.objects.get_or_create(name=name)
-            counter.count += 1
-            counter.save()
-            return func(request)
+        def wrapper(request, *args, **kwargs):
+            try:
+                counter, _ = CountingModel.objects.get_or_create(name=name)
+                counter.count += 1
+                counter.save()
+            except Exception:
+                pass  # không cho thống kê làm chết web
+            return func(request, *args, **kwargs)
         return wrapper
     return decorator
 

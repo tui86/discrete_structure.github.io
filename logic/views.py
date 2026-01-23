@@ -8,13 +8,17 @@ import ast
 def count_logic_data(name):
     def decorator(func):
         @wraps(func)
-        def wrapper(request):
-            counter, _ = LogicModel.objects.get_or_create(name=name)
-            counter.count += 1
-            counter.save()
-            return func(request)
+        def wrapper(request, *args, **kwargs):
+            try:
+                counter, _ = LogicModel.objects.get_or_create(name=name)
+                counter.count += 1
+                counter.save()
+            except Exception:
+                pass  # không cho thống kê làm chết web
+            return func(request, *args, **kwargs)
         return wrapper
     return decorator
+
 
 # Create your views here.
 class PropositionalViews:
