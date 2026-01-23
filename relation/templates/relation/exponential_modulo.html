@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block title %}Mũ đồng dư modulo{% endblock title %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{error}}</p>
+    {% endif %}
+    <h2>Mũ đồng dư modulo</h2>
+    <form method="get" action="{% url "exponential_modulo_compute" %}">
+    <input id="a" name="a" style="width:10%" placeholder="biến a" value="{{ expression|default:'' }}">
+    <input id="b" name="b" style="width:10%" placeholder="biến b" value="{{ expression|default:'' }}">
+    <input id="m" name="m" style="width:10%" placeholder="số mũ" value="{{ expression|default:'' }}">
+    <input type="submit" value="Tính">
+    </form>
+    {% if result is not none %}
+        {% if result|length > 0 %}
+        <p>Đồng dư mũ của {{a}} và {{b}} là:</p>
+        <p>{{ result|join:", " }}</p>
+        {% else %}
+        <p>{{a}} và {{b}} không có đồng dư cho bất kỳ modulo > 1 nào</p>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% block title %}Hằng đúng hằng sai{% endblock %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <h2>Hằng đúng, hằng sai</h2>
+    <form method="get" action="{% url 'constant_true_constant_false_compute' %}">
+        {% csrf_token %}
+        <label for="expression">Nhập biểu thức logic     
+        v:hợp
+        ^:giao
+        ~:phủ định
+        >: kéo
+        =: bằng
+        +: loại trừ
+        <: kéo 2 chiều
+        </label><br>
+        <p> Ví dụ: A v ~A là hằng đúng, A ^ ~A là hằng sai </p><br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input type="submit" value="Kiểm tra">
+    </form>
+    {% if result is not none %}
+        <h3>Kết quả: {{ result }}</h3>
+    {% endif %}
+{% endblock %}

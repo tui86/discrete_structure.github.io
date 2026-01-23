@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Toán rời rạc-{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta keywords="Toán rời rạc, Discrete Mathematics, Logic, Boolean Algebra, Relations, Counting">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h1> Chào mừng bạn đến với công cụ giải quyết Toán rời rạc</h1>
+        <div class="choose_function">
+            <li><a>Logic cơ bản</a>
+            <ul class="submenu">
+                <li><a href="{% url 'truth_table' %}">Tạo bảng chân trị</a></li>
+                <li><a href="{% url 'constant_true_constant_false' %}">Hằng đúng hằng sai</a></li>
+                <li><a href="{% url 'check_variable' %}">Kiểm tra hai vế</a></li>
+            </ul>
+            </li>
+            <li><a>Phương pháp đếm</a>
+            <ul class="submenu">
+                <li><a href="{% url 'check_injective' %}">Kiểm tra đơn ánh</a></li>
+                <li><a href="{% url 'check_bijective' %}">Kiểm tra song ánh</a></li>
+                <li><a href="{% url 'check_surjective' %}">Kiểm tra toàn ánh</a></li>
+                <li><a href="{% url 'reverse_mapping' %}">Ánh xạ ngược</a></li>
+                <li><a href="{% url 'pigeonhole' %}">Định lí chuồng chim bồ câu</a></li>
+            </ul>
+            </li>
+            <li><a>Quan hệ</a>
+            <ul class="submenu">
+                <li><a href="{% url 'plus_and_minus_modulo' %}">Cộng, trừ đồng dư modulo</a></li>
+                <li><a href="{% url 'multiple_modulo' %}">Nhân đồng dư modulo</a></li>
+                <li><a href="{% url 'exponential_modulo' %}">Mũ đồng dư modulo</a></li>
+                <li><a href="{% url "check_the_properties_of_the_relationship" %}">Kiểm tra các tính chất của quan hệ</a></li>
+                <li><a href="{% url "create_hasse_diagram" %}">Vẽ biểu đồ Hasse</a></li>
+            </ul>
+            </li>
+            <li><a>Đại số Boolean</a>
+            <ul class="submenu">
+                <li><a href="{% url "caculator_boolean_algebra" %}">Tính đại số Boolean</a></li>
+                <li><a href="{% url "check_boolean_algebra_properties" %}">Kiểm tra các tính chất của đại số Boolean</a></li>
+                <li><a href="{% url "check_distributed_compensation" %}">Kiểm tra dàn bù phân phối</a></li>
+                <li><a href="{% url "atom" %}">Lấy danh sách nguyên tử</a></li>
+                <li><a href="{% url "minterm" %}">Lấy tự tối thiểu</a></li>
+                <li><a href="{% url "maxterm" %}">Lấy tự tối đại</a></li>
+                <li><a href="{% url "abbreviated_SOP" %}">Rút gọn biểu thức Boolean</a></li>
+                <li><a href="{% url "draw_Karnaugh_chart" %}">Vẽ biểu đồ Karnaugh</a></li>
+            </ul>
+            </li>
+        </div>
+        {%block content %}
+        {%endblock%}
+    </body>
+</html>

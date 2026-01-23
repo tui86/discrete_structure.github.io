@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% block title %}Kiểm tra dàn bù phân phối{% endblock title%}
+{% block content %}
+{% if error %}
+    <p class="error" style="color:crimson">{{ error }}</p>
+{% endif %}
+    <form method="get" action="{% url "check_distributed_compensation_compute" %}">
+        {% csrf_token %}
+        <label for="expression"> Nhập dãy đại số Boolean (tách các biến bằng dấu cách, các biến bao gồm: 0 1 True False)
+            <br>
+            <p>Ví dụ: 0 1 True False</p>
+            <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        </label><br>
+        <input type="submit" value="Kiểm tra">
+    </form>
+    {% if result is not none %}
+        <h3>Kết quả: {{ result }}</h3>
+    {% endif %}
+{% endblock content %}

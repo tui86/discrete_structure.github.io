@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+{% block title %}Tạo biểu đồ Hasse{% endblock title %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{error}}</p>
+    {% endif %}
+    <h2>Tạo biểu đồ Hasse</h2>
+    <form method="get" action="{% url "create_hasse_diagram_compute" %}">
+        <label for="relationship">
+            <p>Nhập tập quan hệ, ví dụ: (1,1) (2,2) (3,3)</p>
+            <input id="relationship" name="relationship" style="width:50%" placeholder="Tập quan hệ" value="{{ relationship|default:'' }}">
+        </label><br>
+        <label for="background_relationship">
+            <p>Hoặc có thể nhập tập nền và toán tử, tập nền cách nhau bằng dấu phẩy</p>
+        <input id="background_relationship" name="background_relationship" style="width:50%" placeholder="Tập nền, ví dụ: 1,2,3,4" value="{{ background_relationship|default:'' }}">
+        <br>
+        <input id="operator" name="operator" style="width:10%" placeholder="Toán tử, ví dụ: =" value="{{ operator|default:'' }}">
+        </label><br>
+        <input type="submit" value="Tạo biểu đồ Hasse">
+    </form>
+    <h2>Biểu đồ Hasse</h2>
+
+        <div id="cy" style="width: 100%; height: 500px; border:1px solid #ccc"></div>
+
+        <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+        <script>
+        const elements = {{ elements|safe }};
+
+        cytoscape({
+        container: document.getElementById('cy'),
+        elements: elements,
+
+        layout: {
+            name: 'breadthfirst',
+            directed: true,
+            spacingFactor: 1.5
+        },
+
+        style: [
+        {
+            selector: 'node',
+            style: {
+            'background-color': '#4CAF50',
+            'label': 'data(label)',
+            'width': 45,
+            'height': 45,
+            'font-size': 11,
+            'color': '#ffffff',
+            'text-valign': 'center',
+            'text-halign': 'center',
+            'text-outline-width': 1,
+            'text-outline-color': '#2e7d32'
+            }
+        },
+        {
+            selector: 'edge',
+            style: {
+            'width': 1.5,
+            'line-color': '#555',
+            'target-arrow-shape': 'none'
+            }
+        }
+        ]
+        });
+        </script>
+
+{% endblock content %}

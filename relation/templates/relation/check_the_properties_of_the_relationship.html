@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% block title %}Kiểm tra các tính chất của quan hệ{% endblock title %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <h2>Kiểm tra các tính chất của quan hệ</h2>
+    <form method="get" action="{% url "check_the_properties_of_the_relationship_compute" %}">
+        <label for="relationship">
+            <p>Nhập tập quan hệ, ví dụ: (1,1) (2,2) (3,3)</p>
+            <input id="relationship" name="relationship" style="width:50%" placeholder="Tập quan hệ" value="{{ relationship|default:'' }}">
+        </label><br>
+        <label for="background_relationship">
+            <p>Hoặc có thể nhập tập nền và toán tử, tập nền cách nhau bằng dấu phẩy</p>
+        <input id="background_relationship" name="background_relationship" style="width:50%" placeholder="Tập nền, ví dụ: 1,2,3,4" value="{{ background_relationship|default:'' }}">
+        <br>
+        <input id="operator" name="operator" style="width:10%" placeholder="Toán tử, ví dụ: =" value="{{ operator|default:'' }}">
+        </label><br>
+        <select id="expression" name="expression">
+            <p>Chọn tính chất cần kiểm tra:</p>
+            <option value="reflective">Phản xạ</option>
+            <option value="symmetric">Đối xứng</option>
+            <option value="transitive">Bắc cầu</option>
+            <option value="equivalence">Tương đương</option>
+            <option value="antisymmetric">Phản đối xứng</option>
+            <option value="partial_order">Thứ tự bán phần</option>
+            <option value="total_order">Thứ tự toàn phần</option>
+        </select><br>
+        <input type="submit" value="Kiểm tra">
+    </form>
+    {% if result is not none %}
+        {% if result %}
+        <p>Quan hệ đã cho <strong>có</strong> tính chất {{ expression }}.</p>
+        {% else %}
+        <p>Quan hệ đã cho <strong>không có</strong> tính chất {{ expression }}.</p>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

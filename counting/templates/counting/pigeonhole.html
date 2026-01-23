@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% block title %}Nguyên lý Dirichlet{% endblock %}
+{% block content %}
+    <h2>Nguyên lý Dirichlet (Pigeonhole Principle)</h2>
+    <p>Nguyên lý Dirichlet phát biểu rằng nếu bạn có nhiều đối tượng hơn số lượng "chuồng" để đặt chúng vào, thì ít nhất một chuồng sẽ chứa nhiều hơn một đối tượng.</p>
+    <p>Ví dụ: Nếu bạn có 10 con chim và 9 cái lồng, thì ít nhất một cái lồng sẽ chứa ít nhất 2 con chim.</p>
+    <h3>Công cụ kiểm tra nguyên lý Dirichlet</h3>
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <form method="get" action="{% url 'pigeonhole_compute' %}">
+        {% csrf_token %}
+        <label for="objects">Đối tượng (Objects) dưới dạng danh sách các đối tượng, cách nhau bởi dấu phẩy:</label><br>
+        <input id="objects" name="objects" style="width:70%" value="{{ objects|default:'' }}"><br><br>
+        <label for="pige_func">Hàm chuồng (Pigeonhole function) ví dụ: x % 3:</label><br>
+        <input id="pige_func" name="pige_func" style="width:70%" value="{{ pige_func|default:'' }}"><br><br>
+        <input type="submit" value="Kiểm tra">
+    </form>
+    {% if result is not none and check is not none %}
+        <h3>Tồn tại ít nhất một chuồng chứa nhiều hơn một đối tượng: {{check}}</h3>
+        <h3>Kết quả chi tiết:</h3>
+        {% for hole, objs in result.items %}
+            <p> {{hole}}: {{objs}}<p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

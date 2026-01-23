@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+{% block title %}rút gọn biểu thức Logic{% endblock title %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <h2> Rút gọn biểu thức logic </h2>
+    <form method="get" action="{% url "abbreviated_SOP_compute" %}">
+            {% csrf_token %}
+        <label for="expression"> Nhập biểu thức Logic:
+            <br>
+            v: hợp
+            <br>
+            ví dụ: xyzvyzt
+        </table><br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input type="submit" value="Rút gọn biểu thức">
+        </label>
+    </form>
+    {% if result is not none %}
+        <p>Kết quả: {{result}}</p>
+    {% endif %}
+{% endblock content %}

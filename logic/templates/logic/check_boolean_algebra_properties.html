@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+{% block title %}Kiểm tra các tính chất của đại số Boolean{% endblock title %}
+{% block content %}
+    <h2>Kiểm tra các tính chất của đại số Boolean</h2>
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <form method="get" action="{% url 'check_boolean_algebra_properties_compute' %}">
+        {% csrf_token %}
+        <label for ="expression">Chọn luật đại số Boolean</label><br>
+        <select name="property" id="property">
+            <option value="commutative">Luật giao hoán</option>
+            <option value="associative">Luật kết hợp</option>
+            <option value="distributive">Luật phân phối</option>
+            <option value="absorption">Luật hấp thu</option>
+            <option value="complement">Luật bù</option>
+            <option value="idempotent">Luật luỹ đẳng</option>
+            <option value="neutral">Luật trung hoà</option>
+            <option value="de_morgan">Luật De Morgan</option>
+            <option value="double_negation">Luật phủ định kép</option>
+            <option value="identity">Luật đồng nhất</option>
+        </select><br><br>
+        <p> Nhập giá trị x (0 hoặc 1) </p>
+        <input name="x" id="x" style="width:20% " value="{{ x|default:'' }}"><br><br>
+        <p> Nhập giá trị cho y (0 hoặc 1) nếu cần </p>
+        <input name="y" id="y" style="width:20% " value="{{ y|default:'' }}"><br><br>
+        <p> Nhập giá trị cho z (0 hoặc 1) nếu cần </p>
+        <input name="z" id="z" style="width:20% " value="{{ z|default:'' }}"><br><br>
+        <input type="submit" value="Kiểm tra">
+    </form>
+    {% if result is not none %}
+        <h3>Kết quả: {{ result }}</h3>
+    {% endif %}
+{% endblock content %}

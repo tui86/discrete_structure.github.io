@@ -1,0 +1,63 @@
+{% extends "base/base.html" %}
+{% block title %}Vẽ Bảng Karnaugh{% endblock title %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{error}}</p>
+    {% endif %}
+    <h2>Vẽ Bảng Karnaugh</h2>
+        <form method="get" action="{% url "draw_Karnaugh_chart_compute" %}">
+            {% csrf_token %}
+        <label for="expression"> Nhập biểu thức Logic:
+            <br>
+            v: hợp
+            <br>
+            ví dụ: xyzvyzt
+        </table><br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input type="submit" value="Vẽ Bảng Karnaugh">
+        </label>
+    </form>
+    <h2>Bản đồ Karnaugh (4x4)</h2>
+    {% if rows %}
+        <table class="kmap">
+            <tr>
+                <th>xy\zt</th>
+                {% for c in col_labels %}
+                    <th>{{ c }}</th>
+                {% endfor %}
+            </tr>
+
+            {% for label, row in rows %}
+            <tr>
+                <th>{{ label }}</th>
+                {% for cell in row %}
+                    <td class="{% if cell == 1 %}one{% else %}zero{% endif %}">
+                        {{ cell }}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% endif %}
+    <style>
+    .kmap {
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .kmap th, .kmap td {
+        border: 1px solid #333;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+    .kmap td.one {
+        background-color: #a5d6a7;
+        font-weight: bold;
+    }
+    .kmap td.zero {
+        background-color: #ef9a9a;
+    }
+    </style>
+{% endblock content %}
+

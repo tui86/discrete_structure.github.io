@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% block title %} Bảng chân trị {% endblock %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <h2>Tạo bảng chân trị</h2>
+    <form method="get" action="{% url 'truth_table_compute' %}">
+        {% csrf_token %}
+        <label for="expression">Nhập biểu thức logic     
+        v:hợp
+        ^:giao
+        ~:phủ định
+        >: kéo
+        =: bằng
+        +: loại trừ
+        <: kéo 2 chiều
+        </label><br>
+        <p> Ví dụ: (A v B) ^ ~C </p><br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input type="submit" value="Tạo bảng chân trị">
+    </form>
+    {% if table is not none %}
+    <h3> Bảng chân trị cho {{ expression}}:</h3>
+    <p> T: đúng, F: sai </p>
+    {{ table | safe }}
+    {% endif %}
+{% endblock %}

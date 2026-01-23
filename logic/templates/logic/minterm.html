@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block title %}Lấy tự tối thiểu{% endblock title %}
+{% block content %}
+{% if error %}
+    <p class="error" style="color:crimson">{{ error }}</p>
+{% endif %}
+    <h2> Lấy tự tối thiểu </h2>
+    <form method="get" action="{% url "minterm_compute" %}">
+        {% csrf_token %}
+        <label for="expression"> Nhập biểu thức Logic:
+            <br>
+            v: hợp
+            <br>
+            ví dụ: xyzvyzt
+        </table><br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input type="submit" value="Lấy tự tối thiểu">
+    </form>
+    {% if result is not none %}
+        <p>Kết quả: {{result}}</p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+{% block title %}Tính đại số Boolean{% endblock title %}
+{% block content %}
+<h2> Tính đại số Boolean</h2>
+{% if error %}
+    <p class="error" style="color:crimson">{{ error }}</p>
+{% endif %}
+<form method="get" action="{% url "caculator_boolean_algebra_compute" %}">
+    {% csrf_token %}
+    <label for="expression"> Nhập biểu thức đại số Boolean:
+        <br>
+        +: hợp
+        <br>
+        *: giao
+        <br>
+        -: phủ định
+        <br>
+        0: sai
+        <br>
+        1: đúng
+        <br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+    </label><br><br>
+    <input type="submit" value="Tính">
+</form>
+{% if result is not none %}
+    <h3>Kết quả: {{ result }}</h3>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% block title %}Kiểm tra hai vế{% endblock %}
+{% block content %}
+    {% if error %}
+        <p class="error" style="color:crimson">{{ error }}</p>
+    {% endif %}
+    <h2>Kiểm tra hai vế</h2>
+        <form method="get" action="{% url 'check_variable_compute' %}">
+        {% csrf_token %}
+        <label for="expression">Nhập biểu thức logic     
+        v:hợp
+        ^:giao
+        ~:phủ định
+        >: kéo
+        =: bằng
+        +: loại trừ
+        <: kéo 2 chiều
+        </label><br>
+        <p> Ví dụ: (A v B) ^ ~C = (A v B) ^ ~C </p><br>
+        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input type="submit" value="Kiểm tra">
+    </form>
+    {% if result is not none %}
+        <h3>Kết quả: {{ result }}</h3>
+    {% endif %}
+{% endblock  %}
