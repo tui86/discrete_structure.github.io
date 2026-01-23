@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from logic import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('counting.urls')),
     path('', include('logic.urls')),
     path('', include('relation.urls')),
+    path('', views.PropositionalViews.create_truth_table_views, name='truth_table'),
 ]
