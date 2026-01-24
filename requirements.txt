@@ -7,3 +7,5 @@ sympy
 pandas
 matplotlib
 networkx
+dj-database-url 
+psycopg2-binary
