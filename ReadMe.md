@@ -69,6 +69,7 @@ Project được deploy trên Render sử dụng Gunicorn và WhiteNoise để p
 Mỗi chức năng đều được ghi nhận số lần người dùng sử dụng thông qua decorator và database.
 Dữ liệu này có thể dùng để thống kê mức độ phổ biến của các chức năng.
 Có thể xem dữ liệu này thông qua trang admin.
+đường dẫn file dữ liệu thuật toán của chương trình: https://github.com/tui86/discrete_structure
 ## Hướng phát triển
 - Cải thiện giao diện người dùng
 - Thêm đăng nhập để lưu lịch sử
