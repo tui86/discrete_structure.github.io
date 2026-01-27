@@ -6,11 +6,11 @@
     {% endif %}
     <h2>Cộng, trừ đồng dư modulo</h2>
     <form method="get" action="{% url "plus_and_minus_modulo_compute" %}">
-    <input id="a" name="a" style="width:10%" placeholder="biến a" value="{{ expression|default:'' }}">
-    <input id="c" name="c" style="width:10%" placeholder="biến c" value="{{ expression|default:'' }}">
+    <input id="a" name="a" class="input-value" style="width:10%" placeholder="biến a" value="{{ expression|default:'' }}">
+    <input id="c" name="c" class="input-value" style="width:10%" placeholder="biến c" value="{{ expression|default:'' }}">
     <p> ≡ </p>
-    <input id="b" name="b" style="width:10%" placeholder="biến b" value="{{ expression|default:'' }}">
-    <input id="d" name="d" style="width:10%" placeholder="biến d" value="{{ expression|default:'' }}">
+    <input id="b" name="b" class="input-value" style="width:10%" placeholder="biến b" value="{{ expression|default:'' }}">
+    <input id="d" name="d" class="input-value" style="width:10%" placeholder="biến d" value="{{ expression|default:'' }}">
     <select name="modulo" id="modulo">
         <option value="+">+</option>
         <option value="-">-</option>

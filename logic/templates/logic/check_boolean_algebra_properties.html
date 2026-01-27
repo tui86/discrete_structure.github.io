@@ -8,7 +8,7 @@
     <form method="get" action="{% url 'check_boolean_algebra_properties_compute' %}">
         {% csrf_token %}
         <label for ="expression">Chọn luật đại số Boolean</label><br>
-        <select name="property" id="property">
+        <select name="property" id="property" class="choice-select">
             <option value="commutative">Luật giao hoán</option>
             <option value="associative">Luật kết hợp</option>
             <option value="distributive">Luật phân phối</option>
@@ -21,11 +21,11 @@
             <option value="identity">Luật đồng nhất</option>
         </select><br><br>
         <p> Nhập giá trị x (0 hoặc 1) </p>
-        <input name="x" id="x" style="width:20% " value="{{ x|default:'' }}"><br><br>
+        <input name="x" id="x" class="input-value" style="width:20% " value="{{ x|default:'' }}"><br><br>
         <p> Nhập giá trị cho y (0 hoặc 1) nếu cần </p>
-        <input name="y" id="y" style="width:20% " value="{{ y|default:'' }}"><br><br>
+        <input name="y" id="y" class="input-value" style="width:20% " value="{{ y|default:'' }}"><br><br>
         <p> Nhập giá trị cho z (0 hoặc 1) nếu cần </p>
-        <input name="z" id="z" style="width:20% " value="{{ z|default:'' }}"><br><br>
+        <input name="z" id="z" class="input-value" style="width:20% " value="{{ z|default:'' }}"><br><br>
         <input type="submit" value="Kiểm tra">
     </form>
     {% if result is not none %}

@@ -6,10 +6,10 @@
     {% endif %}
     <h2>Mũ đồng dư modulo</h2>
     <form method="get" action="{% url "exponential_modulo_compute" %}">
-    <input id="a" name="a" style="width:10%" placeholder="biến a" value="{{ expression|default:'' }}">
-    <input id="b" name="b" style="width:10%" placeholder="biến b" value="{{ expression|default:'' }}">
-    <input id="m" name="m" style="width:10%" placeholder="số mũ" value="{{ expression|default:'' }}">
-    <input type="submit" value="Tính">
+        <input id="a" name="a" class="input-value" style="width:10%" placeholder="biến a" value="{{ expression|default:'' }}">
+        <input id="b" name="b" class="input-value" style="width:10%" placeholder="biến b" value="{{ expression|default:'' }}">
+        <input id="m" name="m" class="input-value" style="width:10%" placeholder="số mũ" value="{{ expression|default:'' }}">
+        <input type="submit" value="Tính">
     </form>
     {% if result is not none %}
         {% if result|length > 0 %}

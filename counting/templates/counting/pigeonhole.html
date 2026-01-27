@@ -11,9 +11,9 @@
     <form method="get" action="{% url 'pigeonhole_compute' %}">
         {% csrf_token %}
         <label for="objects">Đối tượng (Objects) dưới dạng danh sách các đối tượng, cách nhau bởi dấu phẩy:</label><br>
-        <input id="objects" name="objects" style="width:70%" value="{{ objects|default:'' }}"><br><br>
+        <input id="objects" name="objects" class="input-value" style="width:70%" value="{{ objects|default:'' }}"><br><br>
         <label for="pige_func">Hàm chuồng (Pigeonhole function) ví dụ: x % 3:</label><br>
-        <input id="pige_func" name="pige_func" style="width:70%" value="{{ pige_func|default:'' }}"><br><br>
+        <input id="pige_func" name="pige_func" class="input-value" style="width:70%" value="{{ pige_func|default:'' }}"><br><br>
         <input type="submit" value="Kiểm tra">
     </form>
     {% if result is not none and check is not none %}

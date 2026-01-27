@@ -67,3 +67,21 @@ input[type="text"], input[type="number"]
     border: 2px solid #ccc;
     border-radius: 10px;
 }
+.choice-select {
+    width: 10%;
+    height: 50px;
+    padding: 1px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    text-align: left;
+}
+.input-value {
+    height: 50px;
+    padding: 5px;
+    margin: 5px 0 15px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}

@@ -144,20 +144,25 @@ class PigeonholeView:
     
     @count_data('pigeonhole')
     def pigeonhole_compute(request):
-        objects = request.GET.get('objects', '')
-        pige_func = request.GET.get('pige_func', '')
-        if not objects or not pige_func:
-            raise ValueError("Vui lòng nhập đối tượng và hàm chuồng vào")
-        new_objects = []
-        for obj in objects.split(','):
-            obj = obj.strip()
-            if '(' in obj and ')' in obj:
-                obj = obj.replace('(', '').replace(')', '')
-                tuple_obj = tuple(int(x.strip()) for x in obj.split(';'))
-                new_objects.append(tuple_obj)
-            else:
-                new_objects.append((int(obj),))
-
+        try:
+            objects = request.GET.get('objects', '')
+            pige_func = request.GET.get('pige_func', '')
+            new_objects = []
+            for obj in objects.split(','):
+                obj = obj.strip()
+                if '(' in obj and ')' in obj:
+                    obj = obj.replace('(', '').replace(')', '')
+                    tuple_obj = tuple(int(x.strip()) for x in obj.split(';'))
+                    new_objects.append(tuple_obj)
+                else:
+                    new_objects.append((int(obj),))
+        except Exception as e:
+            context = {
+                'error': f"Lỗi khi đọc đối tượng: {str(e)}",
+                'objects': objects,
+                'pige_func': pige_func,
+            }
+            return render(request, 'counting/pigeonhole.html', context)
         def safe_lambda(expr: str):
             allowed_nodes = (
                 ast.Expression, ast.BinOp, ast.UnaryOp,

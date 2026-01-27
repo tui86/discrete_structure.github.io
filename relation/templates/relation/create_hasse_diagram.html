@@ -8,13 +8,13 @@
     <form method="get" action="{% url "create_hasse_diagram_compute" %}">
         <label for="relationship">
             <p>Nhập tập quan hệ, ví dụ: (1,1) (2,2) (3,3)</p>
-            <input id="relationship" name="relationship" style="width:50%" placeholder="Tập quan hệ" value="{{ relationship|default:'' }}">
+            <input id="relationship" name="relationship" class="input-value" style="width:50%" placeholder="Tập quan hệ" value="{{ relationship|default:'' }}">
         </label><br>
         <label for="background_relationship">
             <p>Hoặc có thể nhập tập nền và toán tử, tập nền cách nhau bằng dấu phẩy</p>
-        <input id="background_relationship" name="background_relationship" style="width:50%" placeholder="Tập nền, ví dụ: 1,2,3,4" value="{{ background_relationship|default:'' }}">
+        <input id="background_relationship" name="background_relationship" class="input-value" style="width:50%" placeholder="Tập nền, ví dụ: 1,2,3,4" value="{{ background_relationship|default:'' }}">
         <br>
-        <input id="operator" name="operator" style="width:10%" placeholder="Toán tử, ví dụ: =" value="{{ operator|default:'' }}">
+        <input id="operator" name="operator" class="input-value" style="width:10%" placeholder="Toán tử, ví dụ: =" value="{{ operator|default:'' }}">
         </label><br>
         <input type="submit" value="Tạo biểu đồ Hasse">
     </form>

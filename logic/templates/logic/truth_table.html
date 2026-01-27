@@ -8,16 +8,23 @@
     <form method="get" action="{% url 'truth_table_compute' %}">
         {% csrf_token %}
         <label for="expression">Nhập biểu thức logic     
+        <br>
         v:hợp
+        <br>
         ^:giao
+        <br>
         ~:phủ định
+        <br>
         >: kéo
+        <br>
         =: bằng
+        <br>
         +: loại trừ
+        <br>
         <: kéo 2 chiều
         </label><br>
         <p> Ví dụ: (A v B) ^ ~C </p><br>
-        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input id="expression" name="expression" class="input-value" style="width:70%" value="{{ expression|default:'' }}">
         <input type="submit" value="Tạo bảng chân trị">
     </form>
     {% if table is not none %}

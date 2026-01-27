@@ -9,7 +9,7 @@
         {% csrf_token %}
         <label for="expression">Nhập dãy logic (tách nhau bằng dấu cách)</label><br>
         <p> Ví dụ: 1 2 hoặc (1,2) (3,4)</p><br>
-        <input id="expression" name="expression" style="width:70%" value="{{ expression|default:'' }}">
+        <input id="expression" name="expression" class="input-value" style="width:70%" value="{{ expression|default:'' }}">
         <input type="submit" value="Lấy danh sách nguyên tử">
     </form>
     {% if result is not none %}
