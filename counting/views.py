@@ -4,7 +4,6 @@ from .pigeonhole import PigeonholePrinciple
 from .models import CountingModel
 from functools import wraps
 import ast
-
 def count_data(name):
     def decorator(func):
         @wraps(func)
@@ -46,7 +45,7 @@ class CountingView:
             is_injective = result.check_injective(mapping)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi kiểm tra đơn ánh: {str(e)}",
+                'error': f"Lỗi khi kiểm tra đơn ánh, vui lòng kiểm tra lại công thức",
                 'formula': formula,
             }
             return render(request, 'counting/check_injective.html', context)
@@ -74,7 +73,7 @@ class CountingView:
             is_surjective = result.check_surjective(mapping)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi kiểm tra toàn ánh: {str(e)}",
+                'error': f"Lỗi khi kiểm tra toàn ánh, vui lòng kiểm tra lại công thức",
                 'formula': formula,
             }
             return render(request, 'counting/check_surjective.html', context)
@@ -102,7 +101,7 @@ class CountingView:
             is_bijective = result.check_bijective(mapping)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi kiểm tra song ánh: {str(e)}",
+                'error': f"Lỗi khi kiểm tra song ánh, vui lòng kiểm tra lại công thức",
                 'formula': formula,
             }
             return render(request, 'counting/check_bijective.html', context)
@@ -130,7 +129,7 @@ class CountingView:
             inv_func, reverse_pairs = result.reverse_mapping(mapping)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính hàm ngược: {str(e)}",
+                'error': f"Lỗi khi tính hàm ngược, vui lòng kiểm tra lại công thức",
                 'formula': formula,
             }
             return render(request, 'counting/reverse_mapping.html', context)

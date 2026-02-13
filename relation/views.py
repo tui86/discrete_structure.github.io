@@ -70,7 +70,7 @@ class RelationshipViews:
                 result = relation.plus_modulo(int(var_a), int(var_c), int(var_b), int(var_d))
             except Exception as e:
                 context = {
-                    'error': f"Lỗi khi tính toán biểu thức: {e}"
+                    'error': f"Lỗi khi tính toán biểu thức, vui lòng kiểm tra lại biểu thức"
                 }
                 return render(request, 'relation/plus_and_minus_modulo.html', context)
             context = {
@@ -88,7 +88,7 @@ class RelationshipViews:
                 result = relation.minus_modulo(int(var_a), int(var_c), int(var_b), int(var_d))
             except Exception as e:
                 context = {
-                    'error': f"Lỗi khi tính toán biểu thức: {e}"
+                    'error': f"Lỗi khi tính toán biểu thức, vui lòng kiểm tra lại biểu thức"
                 }
                 return render(request, 'relation/plus_and_minus_modulo.html', context)
             context = {
@@ -119,7 +119,7 @@ class RelationshipViews:
             relation = Relationship.Modulo()
             result = relation.multiple_modulo(int(var_a), int(var_c), int(var_b), int(var_d), print_log=False)
         except Exception as e:
-            context = {'error': f"Lỗi khi thực hiện phép tính: {e}"}
+            context = {'error': "Lỗi khi tính toán biểu thức, vui lòng kiểm tra lại biểu thức"}
             return render(request, 'relation/multiple_modulo.html', context)
         context = {
                 'a':var_a,
@@ -143,7 +143,7 @@ class RelationshipViews:
             result = relation.exponential_modulo(int(var_a), int(var_b), int(var_m))
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {e}"
+                'error': "Lỗi khi tính toán biểu thức, vui lòng kiểm tra lại biểu thức"
             }
             return render(request, 'relation/exponential_modulo.html', context)
         context = {
@@ -192,7 +192,7 @@ class RelationshipViews:
                     return render(request, 'relation/check_the_properties_of_the_relationship.html', context)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi kiểm tra tính chất quan hệ: {e}"
+                'error': f"Lỗi khi kiểm tra tính chất quan hệ, vui lòng kiểm tra lại biểu thức"
             }
             return render(request, 'relation/check_the_properties_of_the_relationship.html', context)
         
@@ -232,7 +232,7 @@ class RelationshipViews:
             edges = relation.create_hasse_diagram()
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tạo biểu đồ Hasse: {e}"
+                'error': f"Lỗi khi tạo biểu đồ Hasse, vui lòng kiểm tra lại biểu thức"
             }
             return render(request, 'relation/create_hasse_diagram.html', context)
         

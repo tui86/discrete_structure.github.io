@@ -35,7 +35,7 @@ class PropositionalViews:
             truth_table = truth_table.to_html(classes='table table-sm', index=False, border=1, escape=False)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tạo bảng chân trị: {str(e)}",
+                'error': f"Lỗi khi tạo bảng chân trị, vui lòng kiểm tra lại công thức",
                 'expression': expression,
             }
             return render(request, 'logic/truth_table.html', context)
@@ -56,7 +56,7 @@ class PropositionalViews:
             result = logic.constant_true_constant_false(expression)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại công thức",
                 'expression': expression,
             }
             return render(request, 'logic/constant_true_constant_false.html', context)
@@ -77,7 +77,7 @@ class PropositionalViews:
             result=logic.check_variable(expression)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại công thức",
                 'expression': expression,
             }
             return render(request, 'logic/check_variable.html', context)
@@ -133,7 +133,7 @@ class Boolean_algebraViews:
             result = eval_expr(expression, zero, one)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại công thức",
                 'expression': expression,
             }
             return render(request, 'logic/caculator_boolean_algebra.html', context)
@@ -181,7 +181,7 @@ class Boolean_algebraViews:
                     result = x.neutral(x)
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại công thức",
                 'property': property,
                 'x': x_value,
                 'y': y_value,
@@ -211,7 +211,7 @@ class Boolean_algebraViews:
                 if val in convert.keys():
                     lattice.append(convert[val])
                 else:
-                    raise ValueError(f"Giá trị không hợp lệ trong biểu thức: {val}")
+                    raise ValueError(f"Giá trị không hợp lệ trong biểu thức, vui lòng kiểm tra lại biểu thức")
             logic.create_lattice_boolean(lattice)
             result = logic.check_distributed_compensation()
         except Exception as e:
@@ -239,7 +239,7 @@ class Boolean_algebraViews:
             result = logic.atom()
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại biểu thức",
                 'expression': expression,
             }
             return render(request, 'logic/atom.html', context)
@@ -261,7 +261,7 @@ class Boolean_algebraViews:
             result = logic.minterm()
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại biểu thức",
                 'expression': expression,
             }
             return render(request, 'logic/minterm.html', context)
@@ -283,7 +283,7 @@ class Boolean_algebraViews:
             result = logic.maxterm()
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại biểu thức",
                 'expression': expression,
             }
             return render(request, 'logic/maxterm.html', context)
@@ -305,7 +305,7 @@ class Boolean_algebraViews:
             result = logic.abbreviated_SOP()
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tính toán: {str(e)}",
+                'error': f"Lỗi khi tính toán, vui lòng kiểm tra lại biểu thức",
                 'expression': expression,
             }
             return render(request, 'logic/abbreviated_SOP.html', context)
@@ -328,7 +328,7 @@ class Boolean_algebraViews:
             kmap = [[int(cell) for cell in row] for row in chart]
         except Exception as e:
             context = {
-                'error': f"Lỗi khi tạo bản Karnaugh: {str(e)}",
+                'error': f"Lỗi khi tạo bản Karnaugh, vui lòng kiểm tra lại biểu thức",
                 'expression': expression,
             }
             return render(request, 'logic/draw_Karnaugh_chart.html', context)
